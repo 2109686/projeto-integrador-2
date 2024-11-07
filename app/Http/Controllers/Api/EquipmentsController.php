@@ -7,6 +7,7 @@ use App\DTOs\Supports\CreateSupportDTO;
 use App\DTOs\Supports\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateSupport;
+use App\Http\Resources\EquipmentsResource;
 use App\Http\Resources\ServicesResource;
 use App\Http\Resources\SupportResource;
 use App\Models\Equipments;
@@ -34,7 +35,7 @@ class EquipmentsController extends Controller
 
          $equipments = Equipments::all();
 
-         return ServicesResource::collection($equipments);
+         return EquipmentsResource::collection($equipments);
     }
 
     /**
