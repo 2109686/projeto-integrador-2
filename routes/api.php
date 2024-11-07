@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\EquipmentsController;
 use App\Http\Controllers\Api\SupportController;
 use App\Http\Controllers\Api\ServicesController;
 use Illuminate\Http\Request;
@@ -24,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['auth:sanctum'])->group(function() {
     Route::apiResource('/supports', SupportController::class);
     Route::apiResource('/services', ServicesController::class);
+    Route::apiResource('/equipments', EquipmentsController::class);
 });
 
 

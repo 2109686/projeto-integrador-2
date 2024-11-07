@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{SupportController, ServicesController};
+use App\Http\Controllers\Admin\{EquipmentsController, SupportController, ServicesController};
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::get('/contato', [SiteController::class, 'contact']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
@@ -43,8 +43,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
     Route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports.destroy');
 
+    Route::get('/services/new', [ServicesController::class, 'create'])->name('services.new');
     Route::get('/services', [ServicesController::class, 'index'])->name('services.index');
     Route::post('/services', [ServicesController::class, 'store'])->name('services.store');
+
+    Route::get('/equipments/new', [EquipmentsController::class, 'create'])->name('equipments.new');
+    Route::get('/equipments', [EquipmentsController::class, 'index'])->name('equipments.index');
+    Route::post('/equipments', [EquipmentsController::class, 'store'])->name('equipments.store');
 
 });
 

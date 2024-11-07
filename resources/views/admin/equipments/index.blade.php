@@ -6,7 +6,7 @@
     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
         {{ __('Voltar para o menu principal') }}
     </x-nav-link>
-    <x-nav-link :href="route('services.new')" :active="request()->routeIs('services.new')">
+    <x-nav-link :href="route('equipments.new')" :active="request()->routeIs('equipments.new')">
         {{ __('Adicionar registro') }}
     </x-nav-link>
 </div>
@@ -24,7 +24,7 @@
         A forma mais segura é utilizando \{\{ $services \}\}
     -->
 
-    @include('admin.services.partials.content')
+    @include('admin.equipments.partials.content')
 
     {{-- <x-pagination :paginator="$services" :appends="$filters" /> --}}
 @endsection

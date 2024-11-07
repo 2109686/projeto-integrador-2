@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Services;
+use App\Models\Equipments;
 use Illuminate\Http\Request;
 
-class ServicesController extends Controller
+class EquipmentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = Services::all();
+        $equipments = Equipments::all();
 
-        return view('admin.services.index', compact('services'));
+        return view('admin.equipments.index', compact('equipments'));
     }
 
     /**
@@ -27,7 +27,7 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        return view('admin.services.new');
+        return view('admin.equipments.new');
     }
 
     /**
@@ -40,59 +40,53 @@ class ServicesController extends Controller
     {
         $validatedData = $request->validate([
             'activity_date' => 'required|date',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i',
-            'collaborator_name' => 'required|string|max:255',
+            'input_time' => 'required|date_format:H:i',
+            'output_time' => 'required|date_format:H:i',
+            'equipment' => 'required|string|max:255',
+            'brand' => 'required|string|max:255',
+            'serial_number' => 'required|string|max:255',
+            'responsible' => 'required|string|max:15',
             'cpf' => 'required|string|max:14',
-            'activity_name' => 'required|string|max:255',
-            'mobile_number' => 'required|string|max:15',
-            'room' => 'required|string|max:255',
+            'rg' => 'required|string|max:15',
             'company' => 'required|string|max:255',
-            'responsible' => 'required|string|max:255',
-            'materials_used' => 'required|string|max:255',
-            'cordage_length' => 'required|numeric|min:0|max:9999999999.99',
-            'from_row' => 'required|string|max:10',
-            'from_rack' => 'required|string|max:1',
-            'to_row' => 'required|string|max:10',
-            'to_rack' => 'required|string|max:1',
         ]);
 
-        $services = Services::create($validatedData);
+        $equipments = Equipments::create($validatedData);
         return redirect()
-        ->route('services.index')
+        ->route('equipments.index')
         ->with('message', 'Cadastrado com sucesso!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Gerenciadorg  $gerenciadorg
+     * @param  \App\Models\Equipments  $equipments
      * @return \Illuminate\Http\Response
      */
-    public function show(Gerenciadorg $gerenciadorg)
+    public function show(Equipments $equipments)
     {
-        return view('gerenciadorgs.show', compact('gerenciadorg'));
+        return view('equipments.show', compact('equipment'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Gerenciadorg  $gerenciadorg
+     * @param  \App\Models\Equipments  $equipments
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gerenciadorg $gerenciadorg)
+    public function edit(Equipments $equipments)
     {
-        return view('gerenciadorgs.edit', compact('gerenciadorg'));
+        return view('equipments.edit', compact('equipment'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Gerenciadorg  $gerenciadorg
+     * @param  \App\Models\Equipments  $equipments
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gerenciadorg $gerenciadorg)
+    public function update(Request $request, Equipments $equipments)
     {
         $validatedData = $request->validate([
             'activity_date' => 'required|date',
@@ -113,19 +107,19 @@ class ServicesController extends Controller
             'to_rack' => 'required|string|max:1',
         ]);
 
-        $gerenciadorg->update($validatedData);
-        return redirect()->route('gerenciadorgs.index');
+        $equipments->update($validatedData);
+        return redirect()->route('equipments.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Gerenciadorg  $gerenciadorg
+     * @param  \App\Models\Equipments  $equipments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gerenciadorg $gerenciadorg)
+    public function destroy(Equipments $equipments)
     {
-        $gerenciadorg->delete();
-        return redirect()->route('gerenciadorgs.index');
+        $equipments->delete();
+        return redirect()->route('equipments.index');
     }
 }
